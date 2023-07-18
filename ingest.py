@@ -116,7 +116,7 @@ def main():
     customer_id = cfg.vectara.customer_id
     corpus_id = cfg.vectara.corpus_id
     api_key = cfg.vectara.api_key
-    crawler_type = cfg.crawling.crawler_type
+    crawler_type = cfg.crawling.document_type
 
     # instantiate the crawler
     crawler = instantiate_crawler(Crawler, 'crawlers', f'{crawler_type.capitalize()}Crawler', cfg, endpoint, customer_id, corpus_id, api_key)
@@ -131,6 +131,7 @@ def main():
         time.sleep(5)   # wait 5 seconds to allow reset_corpus enough time to complete on the backend
 
     logging.info(f"Starting crawl of type {crawler_type}...")
+    print("Crawler's name: ", crawler)
     crawler.crawl()
     logging.info(f"Finished crawl of type {crawler_type}...")
 
